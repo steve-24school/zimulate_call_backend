@@ -1,6 +1,6 @@
 require("dotenv").config();
 const WebSocket = require("ws");
-const { ElevenLabsClient } = require("@elevenlabs/elevenlabs-js");
+const { ElevenLabsClient } = require("@elevenlabs/client");
 
 const API_KEY = process.env.ELEVENLABS_API_KEY;
 const AGENT_ID = process.env.ELEVENLABS_AGENT_ID;

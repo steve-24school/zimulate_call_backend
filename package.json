@@ -2,22 +2,25 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@elevenlabs/client": "^0.4.4",
-    "@elevenlabs/elevenlabs-js": "^2.7.0",
-    "axios": "^1.11.0",
-    "cors": "^2.8.5",
-    "dotenv": "^17.2.1",
-    "express": "^5.1.0",
-    "http": "^0.0.1-security",
-    "twilio": "^5.8.0",
-    "ws": "^8.18.3"
+    "@11labs/client": "^0.0.4",
+    "@fastify/formbody": "^8.0.1",
+    "@fastify/websocket": "^11.0.1",
+    "@types/node": "^18.0.6",
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "elevenlabs": "^0.18.1",
+    "fastify": "^5.1.0",
+    "node-fetch": "^3.3.2",
+    "twilio": "^5.3.7",
+    "ws": "^8.18.0"
   }
 }
