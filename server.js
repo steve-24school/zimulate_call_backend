@@ -98,6 +98,7 @@ wss.on("connection", async (twilioWs, req) => {
           streamSid,
           media: { payload: msg.audio_event.audio_base_64 },
         };
+        console.log("Twillio WS........", twilioWs);
         twilioWs.send(JSON.stringify(toTwilio));
       }
     });
@@ -112,7 +113,6 @@ wss.on("connection", async (twilioWs, req) => {
         msg.event === "media" &&
         elevenLabsWs?.readyState === WebSocket.OPEN
       ) {
-        console.log("in here........");
         elevenLabsWs.send(
           JSON.stringify({
             user_audio_chunk: Buffer.from(msg.media.payload, "base64").toString(
@@ -120,7 +120,6 @@ wss.on("connection", async (twilioWs, req) => {
             ),
           })
         );
-        console.log("[Twilio] Received media");
       } else if (msg.event === "stop") {
         console.log("[Twilio] Call ended");
         elevenLabsWs?.close();
