@@ -6,17 +6,12 @@ const API_KEY = process.env.ELEVENLABS_API_KEY;
 const AGENT_ID = process.env.ELEVENLABS_AGENT_ID;
 const VOICE_ID = process.env.ELEVENLABS_VOICE_ID;
 
-let agent = null;
-
 if (!API_KEY || !AGENT_ID) {
   console.error(" Missing KEY");
   process.exit(1);
 }
 
 const client = new ElevenLabsClient({ apiKey: API_KEY });
-agent = client.conversationalAi.agents.create({
-  conversationConfig: {},
-});
 
 module.exports = function mediaHandler(ws) {
   console.log("Starting Twilio media stream ");
@@ -25,6 +20,9 @@ module.exports = function mediaHandler(ws) {
 
   const startAgentSession = async () => {
     try {
+      const agent = await client.conversationalAi.agents.create({
+        conversationConfig: {},
+      });
       session = await agent.startSession({
         agentId: AGENT_ID,
         voiceId: VOICE_ID,
