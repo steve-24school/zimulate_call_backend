@@ -98,7 +98,7 @@ wss.on("connection", async (twilioWs, req) => {
 
     elevenLabsWs.on("message", (data) => {
       const msg = JSON.parse(data);
-      console.log("ElevenLabs WS Message:", data);
+      console.log("ElevenLabs WS Message:", msg);
       if (msg.type === "audio" && msg.audio_event?.audio_base_64) {
         const toTwilio = {
           event: "media",
@@ -112,7 +112,6 @@ wss.on("connection", async (twilioWs, req) => {
     twilioWs.on("message", (message) => {
       // console.log("Twilio WS Message:", message);
       const msg = JSON.parse(message);
-      console.log("Twilio WS Message:", msg.event);
       if (msg.event === "start") {
         streamSid = msg.start.streamSid;
         console.log(`[Twilio] Started stream: ${streamSid}`);
