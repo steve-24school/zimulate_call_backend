@@ -20,9 +20,11 @@ module.exports = function mediaHandler(ws) {
 
   const startAgentSession = async () => {
     try {
-      const agent = await client.conversationalAi.agents.create({
+      let agent = await client.conversationalAi.agents.create({
         conversationConfig: {},
       });
+      agent = await client.conversationalAi.agents.get(agent.agent_id);
+      console.log("Agent, agent");
       session = await agent.startSession({
         agentId: AGENT_ID,
         voiceId: VOICE_ID,
