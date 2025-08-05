@@ -91,6 +91,7 @@ function registerInboundRoutes(fastify) {
 
           // Function to handle messages from ElevenLabs
           const handleElevenLabsMessage = (message, connection) => {
+            console.log("Message.Type", message.type);
             switch (message.type) {
               case "conversation_initiation_metadata":
                 console.info("[II] Received conversation initiation metadata.");
