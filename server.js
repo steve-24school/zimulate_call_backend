@@ -81,12 +81,7 @@ wss.on("connection", async (twilioWs, req) => {
       const initMessage = {
         type: "conversation_initiation_client_data",
         conversation_config_override: {
-          agent: {
-            prompt: {
-              prompt:
-                "You're Gary, a friendly AI assistant for a phone company. Be helpful and empathetic.",
-            },
-          },
+          agent: {},
         },
       };
 
