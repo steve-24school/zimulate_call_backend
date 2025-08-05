@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const fastifyFormBody = require("@fastify/formbody");
 const fastifyWs = require("@fastify/websocket");
 const { registerInboundRoutes } = require("./inbound-calls.js");
+const twilio = require("twilio");
 //const { registerOutboundRoutes } = require("./outbound-calls.js");
 
 // Load environment variables from .env file
@@ -21,6 +22,30 @@ const PORT = process.env.PORT || 8000;
 // Root route for health check
 fastify.get("/", async (_, reply) => {
   reply.send({ message: "Server is running" });
+});
+
+// Root route for health check
+const AccessToken = twilio.jwt.AccessToken;
+const VoiceGrant = AccessToken.VoiceGrant;
+fastify.get("/token", async (_, reply) => {
+  const identity = req.query.identity || `user_${Date.now()}`;
+  console.log(`🎫 Generating token for identity: ${identity}`);
+
+  const token = new AccessToken(
+    process.env.TWILIO_ACCOUNT_SID,
+    process.env.TWILIO_API_KEY,
+    process.env.TWILIO_API_SECRET,
+    { identity }
+  );
+
+  token.addGrant(
+    new VoiceGrant({
+      outgoingApplicationSid: process.env.TWIML_APP_SID,
+      incomingAllow: true,
+    })
+  );
+
+  res.json({ token: token.toJwt(), identity });
 });
 
 // Start the Fastify server
