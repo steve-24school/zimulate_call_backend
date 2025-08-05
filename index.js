@@ -1,9 +1,9 @@
-import Fastify from "fastify";
-import dotenv from "dotenv";
-import fastifyFormBody from "@fastify/formbody";
-import fastifyWs from "@fastify/websocket";
-import { registerInboundRoutes } from "./inbound-calls.js";
-import { registerOutboundRoutes } from "./outbound-calls.js";
+const Fastify = require("fastify");
+const dotenv = require("dotenv");
+const fastifyFormBody = require("@fastify/formbody");
+const fastifyWs = require("@fastify/websocket");
+const { registerInboundRoutes } = require("./inbound-calls.js");
+//const { registerOutboundRoutes } = require("./outbound-calls.js");
 
 // Load environment variables from .env file
 dotenv.config();
@@ -28,7 +28,7 @@ const start = async () => {
   try {
     // Register route handlers
     await registerInboundRoutes(fastify);
-    await registerOutboundRoutes(fastify);
+    //await registerOutboundRoutes(fastify);
 
     // Start listening
     await fastify.listen({ port: PORT, host: "0.0.0.0" });

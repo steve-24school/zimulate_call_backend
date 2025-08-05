@@ -1,7 +1,7 @@
-import WebSocket from "ws";
-import Twilio from "twilio";
+const WebSocket = require("ws");
+const Twilio = require("twilio");
 
-export function registerOutboundRoutes(fastify) {
+function registerOutboundRoutes(fastify) {
   // Check for required environment variables
   const {
     ELEVENLABS_API_KEY,
@@ -286,3 +286,4 @@ export function registerOutboundRoutes(fastify) {
     );
   });
 }
+module.exports = { registerOutboundRoutes };

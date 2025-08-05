@@ -1,6 +1,6 @@
-import WebSocket from "ws";
+const WebSocket = require("ws");
 
-export function registerInboundRoutes(fastify) {
+function registerInboundRoutes(fastify) {
   // Check for the required environment variables
   const { ELEVENLABS_API_KEY, ELEVENLABS_AGENT_ID } = process.env;
 
@@ -186,3 +186,4 @@ export function registerInboundRoutes(fastify) {
     );
   });
 }
+module.exports = { registerInboundRoutes };
