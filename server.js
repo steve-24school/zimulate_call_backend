@@ -110,9 +110,9 @@ wss.on("connection", async (twilioWs, req) => {
     });
 
     twilioWs.on("message", (message) => {
-      console.log("Twilio WS Message:", message);
+      // console.log("Twilio WS Message:", message);
       const msg = JSON.parse(message);
-
+      console.log("Twilio WS Message:", msg.event);
       if (msg.event === "start") {
         streamSid = msg.start.streamSid;
         console.log(`[Twilio] Started stream: ${streamSid}`);
@@ -120,6 +120,7 @@ wss.on("connection", async (twilioWs, req) => {
         msg.event === "media" &&
         elevenLabsWs?.readyState === WebSocket.OPEN
       ) {
+        console.log("in here........");
         elevenLabsWs.send(
           JSON.stringify({
             user_audio_chunk: Buffer.from(msg.media.payload, "base64").toString(
