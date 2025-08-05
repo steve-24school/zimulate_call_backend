@@ -86,8 +86,6 @@ wss.on("connection", async (twilioWs, req) => {
               prompt:
                 "You're Gary, a friendly AI assistant for a phone company. Be helpful and empathetic.",
             },
-            first_message:
-              "Hi! I'm Gary from the phone company. How can I help you today?",
           },
         },
       };
