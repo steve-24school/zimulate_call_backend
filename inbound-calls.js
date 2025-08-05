@@ -143,6 +143,7 @@ function registerInboundRoutes(fastify) {
                         "base64"
                       ).toString("base64"),
                     };
+                    console.log("Audio Message", JSON.stringify(audioMessage));
                     elevenLabsWs.send(JSON.stringify(audioMessage));
                   }
                   break;
