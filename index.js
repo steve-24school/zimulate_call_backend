@@ -28,7 +28,7 @@ fastify.get("/", async (_, reply) => {
 const AccessToken = twilio.jwt.AccessToken;
 const VoiceGrant = AccessToken.VoiceGrant;
 fastify.get("/token", async (_, reply) => {
-  const identity = req.query.identity || `user_${Date.now()}`;
+  const identity = _.query.identity || `user_${Date.now()}`;
   console.log(`🎫 Generating token for identity: ${identity}`);
 
   const token = new AccessToken(
@@ -45,7 +45,7 @@ fastify.get("/token", async (_, reply) => {
     })
   );
 
-  res.json({ token: token.toJwt(), identity });
+  reply.send({ token: token.toJwt(), identity });
 });
 
 // Start the Fastify server
